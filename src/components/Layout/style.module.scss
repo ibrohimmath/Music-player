@@ -1,6 +1,7 @@
 .layout {
   height: 100vh;
   width: 100%;
+  color: white;
 }
 .row--second {
   height: 8%;
@@ -14,19 +15,29 @@
   display: flex;
   align-items: center;
   .col--first {
-    width: 10%;
+    width: 14%;
     height: 100%;
-    background-color: blue;
+    background-color: #1b1a1a;
+    transition-duration: 400ms;
+    @media (max-width: 1076px) {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 40%;
+      height: 100vh;
+      z-index: 10;
+    }
   }
   .col--second {
-    width: 90%;
+    width: 86%;
     height: 100%;
     display: flex;
     flex-direction: column;
     .row--inner-first {
       height: 55%;
       width: 100%;
-      background-color: yellow;
+      background-color: white;
+      color: black;
     }
     .row--inner-second {
       height: 45%;
@@ -34,5 +45,11 @@
       background-color: brown;
       overflow-y: auto;
     }
+    @media (max-width: 1076px) {
+      width: 100%;
+    }
   }
+}
+.sidebar--open {
+  left: 0 !important;
 }

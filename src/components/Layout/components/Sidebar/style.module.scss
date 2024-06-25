@@ -2,4 +2,11 @@
   width: 100%;
   height: 100%;
   background-color: inherit;
+  padding: 6rem 1.5rem;
+}
+.move-right {
+  transition-duration: 400ms;
+  &:hover {
+    transform: translateX(-0.2rem);
+  }
 }
