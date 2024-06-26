@@ -4,12 +4,12 @@
   color: white;
 }
 .row--second {
-  height: 8%;
+  height: 10%;
   width: 100%;
-  background-color: red;
+  background-color: #1b1a1a;
 }
 .row--main {
-  height: 92%;
+  height: 90%;
   width: 100%;
   overflow-y: auto;
   display: flex;
@@ -34,15 +34,15 @@
     display: flex;
     flex-direction: column;
     .row--inner-first {
-      height: 55%;
+      height: 45%;
       width: 100%;
       background-color: white;
       color: black;
     }
     .row--inner-second {
-      height: 45%;
+      height: 55%;
       width: 100%;
-      background-color: brown;
+      background-color: #1b1a1a;
       overflow-y: auto;
     }
     @media (max-width: 1076px) {

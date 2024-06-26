@@ -1,0 +1,23 @@
+.songs-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+  gap: 1rem;
+  .song-item {
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    .song-item__img {
+      border-radius: 50%;
+      width: 2rem;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center;
+    }
+    .song-item__icon {
+      cursor: pointer;
+    }
+  }
+}

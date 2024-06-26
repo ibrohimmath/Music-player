@@ -1,0 +1,17 @@
+.albums {
+  padding: 1rem 3rem;
+  .album-images {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    .album-image {
+      display: block;
+      width: 5.5rem;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 2px;
+    }
+  }
+}
