@@ -7,7 +7,26 @@ import { Text } from "@/components/Typography";
 import cn from "./style.module.scss";
 
 function Albums() {
-  const { songs, setSongs } = useContext(Context);
+  const {
+    selectedSong,
+    setSelectedSong,
+    selectedAlbum,
+    setSelectedAlbum,
+    filterSong,
+    handleSongPlaying,
+    songs,
+    setSongs,
+  } = useContext(Context);
+
+  const handleAlbumSelect = (albumId) => {
+    setSelectedAlbum(albumId);
+    handleSongPlaying(selectedSong, selectedAlbum, 0);
+    handleSongPlaying(
+      selectedSong,
+      albumId,
+      filterSong(selectedSong, selectedAlbum).isPlaying
+    );
+  };
 
   return (
     <div className={clsx(cn["albums"])}>
@@ -16,8 +35,12 @@ function Albums() {
         {songs.map((songItem) => (
           <img
             key={songItem.id}
-            className={clsx(cn["album-image"])}
+            className={clsx(
+              cn["album-image"],
+              songItem.id === selectedAlbum && cn["album-image--selected"]
+            )}
             src={songItem.album}
+            onClick={() => handleAlbumSelect(songItem.id)}
           />
         ))}
       </div>

@@ -77,11 +77,23 @@ function Footer({ className, style }) {
       }
       return newIsPlaying;
     });
-  }, [isPlaying, filterSong]);
+  }, [isPlaying, selectedAlbum, filterSong]);
 
   // Audio davom etayotganida input range ni o'zgartirib turish kerak
   const onUpdateDuration = () => {
     setInterval(() => {
+      console.log(
+        audioTagRef.current.currentTime,
+        audioTagRef.current.duration
+      );
+      if (audioTagRef.current.currentTime === audioTagRef.current.duration) {
+        setIsPlaying(0);
+        handleSongPlaying(selectedSong, selectedAlbum, 0);
+        rangeRef.current.value = "0";
+        audioTagRef.current.currentTime = 0;
+        audioTagRef.current.pause();
+        return;
+      }
       rangeRef.current.value = audioTagRef.current.currentTime;
     }, 500);
   };
@@ -123,7 +135,7 @@ function Footer({ className, style }) {
             handleSongPlaying(selectedSong, selectedAlbum);
           }}
         >
-          {isPlaying ? (
+          {isPlaying === 1 ? (
             <i className="fa-solid fa-pause"></i>
           ) : (
             <i className="fa-solid fa-play"></i>

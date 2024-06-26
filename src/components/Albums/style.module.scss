@@ -13,5 +13,8 @@
       object-position: center;
       border-radius: 2px;
     }
+    .album-image--selected {
+      border: 2px solid red;
+    }
   }
 }

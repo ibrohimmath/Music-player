@@ -10,6 +10,14 @@ import myWholeWorldAudio from "@/assets/music/My_Whole_World.mp3";
 import abandoned from "@/assets/img/abandoned.jpg";
 import abandonedAudio from "@/assets/music/Abandoned.mp3";
 
+import album2 from "@/assets/img/Album_2.jfif";
+import Opening1 from "@/assets/img/Opening_1.jpg";
+import Opening2 from "@/assets/img/Opening_2.jfif";
+import Opening3 from "@/assets/img/Opening_3.jfif";
+import Opening1Audio from "@/assets/music/Opening_1.mp3";
+import Opening2Audio from "@/assets/music/Opening_2.mp3";
+import Opening3Audio from "@/assets/music/Opening_3.mp3";
+
 function ContextProvider({ children }) {
   const [openSidebar, setOpenSidebar] = useState(false);
 
@@ -47,6 +55,36 @@ function ContextProvider({ children }) {
         },
       ],
     },
+    {
+      id: 2,
+      album: album2,
+      songs: [
+        {
+          isPlaying: -1,
+          id: 1,
+          image: Opening1,
+          name: "Haruka Kanata",
+          singer: "Unknown",
+          audio: Opening1Audio,
+        },
+        {
+          isPlaying: -1,
+          id: 2,
+          image: Opening2,
+          name: "You are my friend",
+          singer: "Uknown",
+          audio: Opening2Audio,
+        },
+        {
+          isPlaying: -1,
+          id: 3,
+          image: Opening3,
+          name: "Creditless",
+          singer: "Uknown",
+          audio: Opening3Audio,
+        },
+      ],
+    },
   ]);
 
   const filterAlbum = (id) => {
@@ -64,7 +102,7 @@ function ContextProvider({ children }) {
     });
   };
 
-  const handleSongPlaying = (id, albumId) => {
+  const handleSongPlaying = (id, albumId, playing) => {
     setSongs((prevSongs) =>
       prevSongs.map((albumItem) => {
         if (albumItem.id !== albumId) return albumItem;
@@ -78,7 +116,7 @@ function ContextProvider({ children }) {
               };
             return {
               ...songItem,
-              isPlaying: songItem.isPlaying === 0 ? 1 : 0,
+              isPlaying: playing ?? (songItem.isPlaying === 0 ? 1 : 0),
             };
           }),
         };
