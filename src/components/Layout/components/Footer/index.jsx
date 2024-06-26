@@ -26,6 +26,8 @@ function Footer({ className, style }) {
 
   const audioTagRef = useRef(null);
   const audioRef = useRef(null);
+  const rangeRef = useRef(null);
+
   const [durationPoint, setDurationPoint] = useState(
     filterSong(selectedSong, selectedAlbum).current
   );
@@ -77,20 +79,16 @@ function Footer({ className, style }) {
     });
   }, [isPlaying, filterSong]);
 
-  // // Audio davom etayotganida state ga saqlab ketish kerak
-  // // console.log("Duration point", durationPoint);
-  // const onUpdateDuration = () => {
-  //   setInterval(() => {
-  //     setDurationPoint((prevDurationPoint) => {
-  //       handleSongDurationPoint(
-  //         audioTagRef.current.currentTime,
-  //         selectedSong,
-  //         selectedAlbum
-  //       );
-  //       return audioTagRef.current.currentTime;
-  //     });
-  //   }, 1000);
-  // };
+  // Audio davom etayotganida input range ni o'zgartirib turish kerak
+  const onUpdateDuration = () => {
+    setInterval(() => {
+      rangeRef.current.value = audioTagRef.current.currentTime;
+    }, 500);
+  };
+
+  const handleMusicDurationPoint = (value) => {
+    audioTagRef.current.currentTime = value;
+  };
 
   return (
     <div className={clsx(className, cn["footer"])} style={style}>
@@ -106,7 +104,7 @@ function Footer({ className, style }) {
           {filterSong(selectedSong, selectedAlbum).singer}
         </Text>
       </div>
-      <audio ref={audioTagRef}>
+      <audio ref={audioTagRef} onDurationChange={onUpdateDuration}>
         <source
           ref={audioRef}
           src={filterSong(selectedSong, selectedAlbum)?.audio}
@@ -137,7 +135,15 @@ function Footer({ className, style }) {
         </span>
       </div>
       <div className={clsx(cn["footer-music__progressbar"])}>
-        <input type="range" min="0" max={audioTagRef.current?.duration} />
+        <input
+          type="range"
+          min="0"
+          max={audioTagRef.current?.duration}
+          defaultValue="0"
+          ref={rangeRef}
+          onClick={() => console.log("Duration point", rangeRef.value)}
+          onChange={(e) => handleMusicDurationPoint(e.target.value)}
+        />
       </div>
     </div>
   );

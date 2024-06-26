@@ -20,8 +20,6 @@ function Songs() {
     setSongs,
   } = useContext(Context);
 
-  // <i className="fa-solid fa-pause"></i>
-
   console.log(
     "Songs",
     filterSong(selectedSong, selectedAlbum).isPlaying,

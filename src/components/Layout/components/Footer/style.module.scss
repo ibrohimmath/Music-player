@@ -48,13 +48,16 @@
   .footer-music__progressbar {
     margin-left: 4rem;
     @media (max-width: 1282px) {
-      margin-top: 1rem;
+      margin-left: 0;
+      margin-bottom: 1rem;
     }
-    margin-bottom: 1rem;
     input {
       appearance: none;
       height: 6px;
       width: 50vw;
+      cursor: pointer;
+      outline: none;
+      border: none;
     }
     input::-webkit-slider-thumb {
       appearance: none;
